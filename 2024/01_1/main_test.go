@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/williamtriinh/advent-of-code/2024/imath"
+	"github.com/williamtriinh/advent-of-code/pkg/imath"
 )
 
 func solution(input string) int {
