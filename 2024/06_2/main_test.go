@@ -51,16 +51,21 @@ func doesLoop(lines []string, x, y int) bool {
 			visited[y][x] = byte(facing)
 		}
 
-		dx := x + directions[facing][0]
-		dy := y + directions[facing][1]
+		for { // Keep turning until we don't reach an obstacle or out of bounds
+			dx := x + directions[facing][0]
+			dy := y + directions[facing][1]
 
-		// Guard is about to leave the map
-		if dx < 0 || dx >= width || dy < 0 || dy >= height {
-			return false
-		}
+			// Guard is about to leave the map
+			if dx < 0 || dx >= width || dy < 0 || dy >= height {
+				return false
+			}
 
-		if lines[dy][dx] == '#' {
-			facing = (facing + 1) % len(directions)
+			if lines[dy][dx] == '#' {
+				facing = (facing + 1) % len(directions)
+				continue
+			}
+
+			break
 		}
 
 		x += directions[facing][0]
@@ -178,7 +183,7 @@ func TestDoesLoopSample2(t *testing.T) {
 	}
 }
 
-func TestSolutionSample(t *testing.T) {
+func TestSolutionSample1(t *testing.T) {
 	input :=
 		`....#.....
 		 .........#
