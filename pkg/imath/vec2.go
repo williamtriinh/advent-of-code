@@ -5,6 +5,10 @@ type Vec2 struct {
 	Y int
 }
 
+func (v Vec2) Add(other Vec2) Vec2 {
+	return Vec2{X: v.X + other.X, Y: v.Y + other.Y}
+}
+
 func (v Vec2) Dot(other Vec2) int {
 	return v.X*other.X + v.Y*other.Y
 }
