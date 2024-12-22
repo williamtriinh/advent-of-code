@@ -22,5 +22,9 @@ func (v Vec2) IsZero() bool {
 }
 
 func (v Vec2) Subtract(other Vec2) Vec2 {
-	return Vec2{X: other.X - v.X, Y: other.Y - v.Y}
+	return Vec2{X: v.X - other.X, Y: v.Y - other.Y}
+}
+
+func ManhattanDistanceVec2(a, b Vec2) int {
+	return Abs(a.X-b.X) + Abs(a.Y-b.Y)
 }
