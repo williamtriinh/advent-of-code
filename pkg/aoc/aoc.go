@@ -34,3 +34,13 @@ func SplitAndTrim(input, separation string) []string {
 
 	return lines
 }
+
+func Reduce[T1, T2 any](slice []T1, combiningFunction func(T2, T1) T2, initialValue T2) T2 {
+	accumulator := initialValue
+
+	for _, value := range slice {
+		accumulator = combiningFunction(accumulator, value)
+	}
+
+	return accumulator
+}
