@@ -23,17 +23,24 @@ func solution(input string) int {
 		direction := line[0]
 		distance, _ := strconv.Atoi(line[1:])
 
+		var sign int
+		var distance_to_zero int
+
 		if direction == 'L' {
-			pointing_at -= distance
+			sign = -1
+			distance_to_zero = pointing_at
 		} else {
-			pointing_at += distance
+			sign = 1
+			distance_to_zero = MAX - pointing_at
 		}
 
-		pointing_at = imath.Mod(pointing_at, MAX)
+		pointing_at = imath.Mod(pointing_at+sign*distance, MAX)
 
-		if pointing_at == 0 {
+		if distance_to_zero > 0 && distance >= distance_to_zero {
 			pointing_at_zero_count += 1
 		}
+
+		pointing_at_zero_count += imath.Max(distance-distance_to_zero, 0) / MAX
 	}
 
 	return pointing_at_zero_count
@@ -52,7 +59,7 @@ func TestSolutionSample(t *testing.T) {
 		R14
 		L82`
 
-	expected := 3
+	expected := 6
 	received := solution(input)
 
 	if expected != received {
