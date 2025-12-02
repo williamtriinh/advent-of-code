@@ -1,13 +1,13 @@
 package imath
 
-func Max(values ...int) int {
-	max := values[0]
+func Max(x int, values ...int) int {
+	max_int := x
 
-	for i := 1; i < len(values); i++ {
-		if values[i] > max {
-			max = values[i]
+	for _, value := range values {
+		if value > max_int {
+			max_int = value
 		}
 	}
 
-	return max
+	return max_int
 }
